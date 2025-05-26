@@ -5,14 +5,15 @@ Sistema em Python para cadastro e gerenciamento de usuários com validações ro
 
 ## Funcionalidades
 
-### 🔐 Validações Implementadas
+### Validações Implementadas
 - **Nome de usuário**: 8 a 16 caracteres, verificação de duplicidade
 - **E-mail**: Validação básica com presença do símbolo "@"
 - **Data de nascimento**: Formato dd/mm/aaaa, verificação de maioridade (18+ anos)
 - **Senha**: 8 a 16 caracteres com mínimo de 2 caracteres especiais
 
-### 📋 Funcionalidades do Sistema
+### Funcionalidades do Sistema
 - Cadastro de usuários com múltiplas validações
 - Listagem de usuários em formato de tabela
 - Sistema de tentativas limitadas (máximo 3 por campo)
+- Login usuário
 - Menu interativo para navegação

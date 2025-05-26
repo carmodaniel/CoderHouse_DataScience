@@ -1,6 +1,6 @@
-import datetime # biblioteca para manipulação de data
-import re # biblioteca para regex
-from tabulate import tabulate  # biblicote para formatar a tabela
+import datetime  # biblioteca para manipulação de data
+import re  # biblioteca para regex
+from tabulate import tabulate  # biblioteca para formatar a tabela
 
 usuarios = {}
 
@@ -9,13 +9,16 @@ def menuCadastro():
         print("\n===== MENU DE CADASTRO =====")
         print("1 - Registrar Usuário")
         print("2 - Listar Usuários")
-        print("3 - Encerrar Programa")
+        print("3 - Login")
+        print("4 - Encerrar Programa")
         opcao = input("Escolha uma opção: ").strip()
         if opcao == "1":
             registrarUsuario()
         elif opcao == "2":
             listarUsuarios()
         elif opcao == "3":
+            loginUsuario()
+        elif opcao == "4":
             print("Programa encerrado.")
             break
         else:
@@ -54,19 +57,18 @@ def registrarUsuario():
     tentativas_data = 0
     while tentativas_data < 3:
         data_nasc = input("Digite a data de nascimento (dd/mm/aaaa): ").strip()
-        if not re.match(r"^\d{2}/\d{2}/\d{4}$", data_nasc): # utiliza regex para validar o formato dd/mm/aaaa com regex
+        if not re.match(r"^\d{2}/\d{2}/\d{4}$", data_nasc):
             print("Formato de data inválido! Utilize o formato dd/mm/aaaa")
             tentativas_data += 1
             continue
         try:
             dia, mes, ano = map(int, data_nasc.split("/"))
-            data_nasc_obj = datetime.date(ano, mes, dia) # cria um objeto de data
+            data_nasc_obj = datetime.date(ano, mes, dia)
         except Exception:
             print("Formato de data inválido! Utilize o formato dd/mm/aaaa")
             tentativas_data += 1
             continue
-        # Verifica idade
-        hoje = datetime.date.today() # pega a data atual
+        hoje = datetime.date.today()
         idade = hoje.year - ano - ((hoje.month, hoje.day) < (mes, dia))
         if idade < 18:
             print("Favor pedir o cadastro pelos seus pais ou responsáveis.")
@@ -96,12 +98,12 @@ def registrarUsuario():
         print("Favor validar as informações e seguir com o cadastro na sequência.")
         return
 
-    # Cadastro realizado
     usuarios[nome] = {
         "email": email,
         "data_nasc": data_nasc,
         "idade": idade,
-        "data_cadastro": datetime.datetime.now().strftime("%d/%m/%Y %H:%M") # formata a data e hora
+        "data_cadastro": datetime.datetime.now().strftime("%d/%m/%Y %H:%M"),
+        "senha": senha
     }
     print(f"Usuário '{nome}' cadastrado com sucesso!")
 
@@ -121,5 +123,34 @@ def listarUsuarios():
     print("\nUsuários cadastrados:")
     print(tabulate(tabela, headers=["Data Cadastro", "Nome", "E-mail", "Data Nasc.", "Idade"], tablefmt="grid"))
 
-# Para rodar o programa, basta chamar:
+def loginUsuario():
+    tentativas_usuario = 0
+    while tentativas_usuario < 3:
+        nome = input("\nDigite o nome do usuário: ").strip()
+        if nome not in usuarios:
+            tentativas_usuario += 1
+            print(f"Usuário '{nome}' não encontrado. Tentativa {tentativas_usuario} de 3.")
+            if tentativas_usuario >= 3:
+                print("Verifique as informações fornecidas e tente posteriormente.")
+                return
+        else:
+            break
+    else:
+        return
+
+    tentativas_senha = 0
+    while tentativas_senha < 3:
+        senha = input("Digite a senha: ").strip()
+        if senha == usuarios[nome]["senha"]:
+            print(f"Bem-vindo, {nome}!")
+            return
+        else:
+            tentativas_senha += 1
+            print(f"Senha incorreta. Tentativa {tentativas_senha} de 3.")
+            if tentativas_senha >= 3:
+                print("Seu usuário foi bloqueado por tentativa por mais de 3 vezes com senha errada.")
+                print("Favor entrar em contato com o suporte.")
+                return
+
+# Para rodar o programa
 menuCadastro()
