@@ -1,0 +1,9 @@
+README.md
+pyproject.toml
+setup.py
+src/ClientesDanielEduardodoCarmo/__init__.py
+src/ClientesDanielEduardodoCarmo/clientes.py
+src/ClientesDanielEduardodoCarmo.egg-info/PKG-INFO
+src/ClientesDanielEduardodoCarmo.egg-info/SOURCES.txt
+src/ClientesDanielEduardodoCarmo.egg-info/dependency_links.txt
+src/ClientesDanielEduardodoCarmo.egg-info/top_level.txt

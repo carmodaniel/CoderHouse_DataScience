@@ -1,0 +1,12 @@
+[project]
+name = "ClientesDanielEduardodoCarmo"
+version = "0.1.0"
+description = "Pacote para gerenciamento de clientes"
+authors = [
+    { name="DASniel Eduardo do Carmo", email="carmo.daniel@live.com" }
+]
+readme = "README.md"
+requires-python = ">=3.8"
+
+[tool.setuptools]
+packages = ["ClientesDanielEduardodoCarmo"]
