@@ -24,7 +24,7 @@ python clientes.py
 ## Estrutura do Projeto
 
 ```
-clientes_pacote/
+ClientesDanielEduardodoCarmo/
 │
 ├── clientes.py
 └── README.md

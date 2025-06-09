@@ -5,7 +5,7 @@ setup(
     name='ClientesDanielEduardodoCarmo',  # Nome do pacote
     version='0.1.0',
     author='Daniel Eduardo do Carmo',
-    description='Pacote de exemplo com classe Cliente e página de compras',
+    description='Pacote de exemplo com classe Cliente',
     packages=find_packages(where='src'),
     package_dir={'': 'src'},
     python_requires='>=3.6',
